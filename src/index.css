@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .userStyle {
+    @apply bg-slate-500 text-3xl font-semibold font-serif p-2 border-2 border-gray-900 text-gray-900 w-[31.25rem];
+  }
+  .buttonStyle {
+    @apply border-4 border-gray-900 p-2 rounded-2xl text-gray-900 text-3xl font-semibold font-serif bg-slate-500;
+  }
+  .buttonStyle:hover {
+    @apply p-2 text-red-600 bg-gray-900 border-red-600 outline outline-1 outline-gray-900;
+  }
+  .userBox {
+    @apply flex flex-wrap;
+  }
+  .photoStyle {
+    @apply flex flex-wrap;
+  }
+}
