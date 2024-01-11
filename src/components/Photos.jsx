@@ -1,34 +1,24 @@
 import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 
-import Albums from './Albums';
-
-const Photos = props => {
+const Photos = () => {
   const [showPhotos, setPhotos] = useState([]);
-  const [backAlbum, setbackAlbum] = useState(true);
+  const param = useParams();
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/photos')
+    fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${param.id}`)
       .then(response => response.json())
       .then(photos => setPhotos(photos));
-  }, []);
+  }, [param.id]);
   return (
     <div>
-      {backAlbum ? (
-        <div>
-          <div className="photoStyle">
-            {showPhotos.map(
-              photo =>
-                photo.albumId === props.userId && (
-                  <img src={photo.thumbnailUrl} alt="Error" key={photo.id} />
-                ),
-            )}
-          </div>
-          <button className="buttonStyle m-2" onClick={() => setbackAlbum(false)}>
-            back
-          </button>
-        </div>
-      ) : (
-        <Albums userId={props.userId} />
-      )}
+      <div className="photoStyle">
+        {showPhotos.map(photo => (
+          <img src={photo.thumbnailUrl} alt="Error" key={photo.id} />
+        ))}
+      </div>
+      <Link to="/" className="buttonStyle m-2">
+        back
+      </Link>
     </div>
   );
 };
